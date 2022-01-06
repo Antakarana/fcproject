@@ -38,14 +38,20 @@ const CrewMembersScreenStack = () => {
   );
 };
 
+const tabConfig = {
+  tabBarActiveTintColor: '#f4511e',
+  tabBarInactiveTintColor: '#a1a1a1',
+  tabBarActiveBackgroundColor: '#ffffff',
+  tabBarInactiveBackgroundColor: '#ffffff',
+};
+
 const App = () => {
   return (
     <NavigationContainer>
       <RootStack.Navigator
         screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: '#7127F2',
-          tabBarInactiveTintColor: 'gray',
+          ...tabConfig,
+          tabBarStyle: { position: 'absolute' }
         }}>
         <RootStack.Screen
           name="Rockets"
@@ -55,16 +61,24 @@ const App = () => {
               <RocketIcon size={size} color={color} />
             ),
             tabBarLabel: 'Rockets',
+            headerStyle: {
+              backgroundColor: '#f4511e'
+            },
+            headerTintColor: '#ffffff',
           }}
         />
         <RootStack.Screen
-          name="CrewMemberStack"
+          name="Crew Members"
           component={CrewMembersScreenStack}
           options={{
             tabBarIcon: ({color, size}) => (
               <CrewIcon size={size} color={color} />
             ),
             tabBarLabel: 'Crew',
+            headerStyle: {
+              backgroundColor: '#f4511e',
+            },
+            headerTintColor: '#ffffff',
           }}
         />
       </RootStack.Navigator>

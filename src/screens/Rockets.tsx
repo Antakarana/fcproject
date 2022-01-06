@@ -1,8 +1,10 @@
-import React, {useState, useEffect, FunctionComponent} from 'react';
-import {SafeAreaView, Text, StyleSheet, View, ScrollView} from 'react-native';
+import React, {useState, useEffect,useLayoutEffect, FunctionComponent} from 'react';
+import {SafeAreaView, Text, StyleSheet, View, ScrollView, Touchable, TouchableOpacity} from 'react-native';
 import {serviceConnectionRockets} from '../services/api/ApiFunctions';
 import ImageSlider from 'react-native-image-slider';
 import {screenWidth} from '../utils/Constants';
+import {useNavigation} from '@react-navigation/core';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const Rockets: FunctionComponent = () => {
   const [rocketData, setRocketData] = useState<{}>();
@@ -16,9 +18,19 @@ const Rockets: FunctionComponent = () => {
     setRocketData(rockets);
   };
 
+
+  const navigation = useNavigation();
+    
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={() =>{}} />
+      ),
+    });
+  }, [navigation]);
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Rockets Screen</Text>
       <ScrollView>
         {rocketData?.map(item => {
           return (

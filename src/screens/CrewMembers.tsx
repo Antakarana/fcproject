@@ -23,19 +23,19 @@ const CrewMembers: FunctionComponent = () => {
 
   return (
     <SafeAreaView>
-      <Text>Crew Members Screen</Text>
       <ScrollView style={styles.fieldCrewList}>
         {crewData?.map(item => {
           return (
             <View key={item.id}>
               <MemberCard
                 name={item?.name}
-                onPress={() => navigation.navigate('CrewMember', item?.id)}
+                onPress={() => navigation.navigate('CrewMember', item)}
                 agency={item?.agency}
                 image={item?.image}
                 url={item?.wikipedia}
                 launches={item?.launches}
                 status={item?.status}
+                isDisabled={false}
               />
             </View>
           );

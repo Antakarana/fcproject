@@ -11,12 +11,17 @@ interface Props {
   launches: object;
   status: string;
   id: string;
+  isDisabled: boolean;
 }
 
 const MemberCard: React.FC<Props> = props => {
-  const {name, onPress, agency, image, url, launches, status, id} = props;
+  const {name, onPress, agency, image, url, launches, status, id, isDisabled} =
+    props;
   return (
-    <TouchableOpacity style={styles.container} onPress={() => onPress(id)}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => onPress(id)}
+      disabled={isDisabled}>
       <Image source={{uri: image}} style={styles.img} />
       <View style={styles.fieldCrew}>
         <View style={{flexDirection: 'row'}}>
