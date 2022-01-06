@@ -62,12 +62,11 @@ const styles = StyleSheet.create({
   center: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingBottom: 20,
   },
   images: {
-    width: screenWidth - 40,
-    height: screenWidth / 1.75,
-    borderRadius: 5,
+    width: screenWidth,
+    height: screenWidth / 1.75
   },
   txtCompany: {
     fontSize: 18,
