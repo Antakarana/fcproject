@@ -1,26 +1,59 @@
 import React, {FunctionComponent} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {screenWidth} from '../utils/Constants';
 
 interface Props {
   name: String;
   onPress: (name: string) => void;
+  agency: string;
+  image: string;
+  url: string;
+  launches: object;
+  status: string;
+  id: string;
 }
 
-const MemberCard: React.FC<Props> = ({name, onPress}) => {
+const MemberCard: React.FC<Props> = props => {
+  const {name, onPress, agency, image, url, launches, status, id} = props;
   return (
-    <TouchableOpacity style={styles.container} onPress={()=>onPress(name)}>
-      <Text>{name}</Text>
+    <TouchableOpacity style={styles.container} onPress={() => onPress(id)}>
+      <Image source={{uri: image}} style={styles.img} />
+      <View style={styles.fieldCrew}>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={styles.txt}>{name} </Text>
+          <Text style={styles.txt}>({agency})</Text>
+        </View>
+        <Text style={styles.url}>{url}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#efefef',
     marginHorizontal: 10,
     marginVertical: 5,
     padding: 10,
-    borderRadius: 5,
+    flexDirection: 'row',
+  },
+  img: {
+    width: screenWidth / 5,
+    height: screenWidth / 5,
+    borderRadius: screenWidth / 2.5,
+  },
+  fieldCrew: {
+    paddingHorizontal: 20,
+    paddingVertical: 2.5,
+  },
+  txt: {
+    fontSize: 18,
+    fontWeight: '500',
+  },
+  url: {
+    fontSize: 14,
+    fontWeight: '400',
+    flexWrap: 'wrap',
+    width: screenWidth / 1.5,
   },
 });
 

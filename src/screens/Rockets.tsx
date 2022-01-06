@@ -1,12 +1,5 @@
 import React, {useState, useEffect, FunctionComponent} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  Image,
-  StyleSheet,
-  View,
-  ScrollView,
-} from 'react-native';
+import {SafeAreaView, Text, StyleSheet, View, ScrollView} from 'react-native';
 import {serviceConnectionRockets} from '../services/api/ApiFunctions';
 import ImageSlider from 'react-native-image-slider';
 import {screenWidth} from '../utils/Constants';
@@ -50,7 +43,7 @@ const styles = StyleSheet.create({
   center: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 20
   },
   images: {
     width: screenWidth - 40,
