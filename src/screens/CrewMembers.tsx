@@ -10,7 +10,7 @@ import {screenWidth} from '../utils/Constants';
 
 const CrewMembers: FunctionComponent = () => {
   const [crewData, setCrewData] = useState<{}>();
-  const [isPermissed,setIsPermissed]=useState<boolean>(false);
+  const [isPermissed, setIsPermissed] = useState<boolean>(false);
 
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParams>>();
@@ -39,7 +39,9 @@ const CrewMembers: FunctionComponent = () => {
             <MemberCard
               name={item?.name}
               onPress={() =>
-                isPermissed ? navigation.navigate('CrewMember', item) : {}
+                isPermissed
+                  ? navigation.navigate('CrewMember', item)
+                  : alert('There is no permission')
               }
               agency={item?.agency}
               image={item?.image}
