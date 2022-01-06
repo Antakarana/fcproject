@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {CrewMembers, CrewMember, Rockets} from './src/screens/Index';
 import {
   NavigationContainer,
@@ -8,8 +8,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import RocketIcon from './src/assets/icons/Rocket';
 import CrewIcon from './src/assets/icons/Crew';
-import {Rocket} from './src/apis/interfaces';
-import axios, {AxiosResponse} from 'axios';
 
 export type RootStackParams = {
   CrewMemberStack: NavigatorScreenParams<CrewMembersParams>;
@@ -41,17 +39,6 @@ const CrewMembersScreenStack = () => {
 };
 
 const App = () => {
-  const [rocketData, setRocketData] = useState<Rocket[]>();
-
-  useEffect(() => {
-    axios
-      .get<Rocket[]>('https://api.spacexdata.com/v4/rockets')
-      .then((response: AxiosResponse) => {
-        console.log('response: ', response.data);
-        setRocketData(response?.data);
-      });
-  }, []);
-
   return (
     <NavigationContainer>
       <RootStack.Navigator
