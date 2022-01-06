@@ -1,5 +1,18 @@
-import React, {useState, useEffect,useLayoutEffect, FunctionComponent} from 'react';
-import {SafeAreaView, Text, StyleSheet, View, ScrollView, Touchable, TouchableOpacity} from 'react-native';
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  FunctionComponent,
+} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+  ScrollView,
+  Touchable,
+  TouchableOpacity,
+} from 'react-native';
 import {serviceConnectionRockets} from '../services/api/ApiFunctions';
 import ImageSlider from 'react-native-image-slider';
 import {screenWidth} from '../utils/Constants';
@@ -18,44 +31,38 @@ const Rockets: FunctionComponent = () => {
     setRocketData(rockets);
   };
 
-
   const navigation = useNavigation();
-    
+
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity onPress={() =>{}} />
-      ),
+      headerRight: () => <TouchableOpacity onPress={() => {}} />,
     });
   }, [navigation]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        {rocketData?.map(item => {
-          return (
-            <View key={item.id} style={styles.center}>
-              <ImageSlider images={item.flickr_images} style={styles.images} />
-              <Text style={styles.txtCompany}>{item.company}</Text>
-              <Text style={styles.txtCountry}>{item.country}</Text>
-              <Text style={styles.txtDesc}>{item.description}</Text>
-            </View>
-          );
-        })}
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView style={styles.container}>
+      {rocketData?.map(item => {
+        return (
+          <View key={item.id} style={styles.center}>
+            <ImageSlider images={item.flickr_images} style={styles.images} />
+            <Text style={styles.txtCompany}>{item.company}</Text>
+            <Text style={styles.txtCountry}>{item.country}</Text>
+            <Text style={styles.txtDesc}>{item.description}</Text>
+          </View>
+        );
+      })}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    margin: 20,
+    marginBottom: screenWidth / 5,
   },
   center: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20
+    paddingVertical: 20,
   },
   images: {
     width: screenWidth - 40,
@@ -66,16 +73,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     paddingTop: 5,
+    paddingHorizontal: 20,
   },
   txtCountry: {
     fontSize: 16,
     fontWeight: '400',
     paddingVertical: 2.5,
+    paddingHorizontal: 20,
   },
   txtDesc: {
     fontSize: 14,
     fontWeight: '300',
     paddingVertical: 2.5,
+    paddingHorizontal: 20,
   },
 });
 

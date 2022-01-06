@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import RocketIcon from './src/assets/icons/Rocket';
 import CrewIcon from './src/assets/icons/Crew';
+import {StatusBar} from 'react-native';
 
 export type RootStackParams = {
   CrewMemberStack: NavigatorScreenParams<CrewMembersParams>;
@@ -24,17 +25,52 @@ export type CrewMembersParams = {
   };
 };
 
-const CrewMemberStack = createNativeStackNavigator<CrewMembersParams>();
+const Stack = createNativeStackNavigator<CrewMembersParams>();
+
+const RocketScreenStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Rockets"
+        component={Rockets}
+        options={{
+          title: 'Rockets',
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#ffffff',
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const CrewMembersScreenStack = () => {
   return (
-    <CrewMemberStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <CrewMemberStack.Screen name="CrewMembers" component={CrewMembers} />
-      <CrewMemberStack.Screen name="CrewMember" component={CrewMember} />
-    </CrewMemberStack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="CrewMembers"
+        component={CrewMembers}
+        options={{
+          title: 'Crew Members',
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#ffffff',
+        }}
+      />
+      <Stack.Screen
+        name="CrewMember"
+        component={CrewMember}
+        options={({route}) => ({
+          title: route?.params?.name,
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#ffffff',
+        })}
+      />
+    </Stack.Navigator>
   );
 };
 
@@ -45,44 +81,39 @@ const tabConfig = {
   tabBarInactiveBackgroundColor: '#ffffff',
 };
 
-const App = () => {
+const App = ({navigation, route}) => {
   return (
-    <NavigationContainer>
-      <RootStack.Navigator
-        screenOptions={{
-          ...tabConfig,
-          tabBarStyle: { position: 'absolute' }
-        }}>
-        <RootStack.Screen
-          name="Rockets"
-          component={Rockets}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <RocketIcon size={size} color={color} />
-            ),
-            tabBarLabel: 'Rockets',
-            headerStyle: {
-              backgroundColor: '#f4511e'
-            },
-            headerTintColor: '#ffffff',
-          }}
-        />
-        <RootStack.Screen
-          name="Crew Members"
-          component={CrewMembersScreenStack}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <CrewIcon size={size} color={color} />
-            ),
-            tabBarLabel: 'Crew',
-            headerStyle: {
-              backgroundColor: '#f4511e',
-            },
-            headerTintColor: '#ffffff',
-          }}
-        />
-      </RootStack.Navigator>
-    </NavigationContainer>
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#f4511e" />
+      <NavigationContainer>
+        <RootStack.Navigator
+          screenOptions={{
+            ...tabConfig,
+            tabBarStyle: {position: 'absolute'},
+            headerShown: false,
+          }}>
+          <RootStack.Screen
+            name="Rockets"
+            component={RocketScreenStack}
+            options={{
+              tabBarIcon: ({color, size}) => (
+                <RocketIcon size={size} color={color} />
+              ),
+              tabBarLabel: 'Rockets',
+            }}
+          />
+          <RootStack.Screen
+            name="Crew Members"
+            component={CrewMembersScreenStack}
+            options={{
+              tabBarIcon: ({color, size}) => (
+                <CrewIcon size={size} color={color} />
+              ),
+            }}
+          />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </>
   );
 };
 

@@ -9,22 +9,21 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 type Props = NativeStackScreenProps<RootStackParams, 'CrewMember'>;
 
 const CrewMember: FunctionComponent = ({route}: Props) => {
-
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParams>>();
 
   return (
     <SafeAreaView>
-        <MemberCard
-                name={route?.params?.name}
-                onPress={() => {}}
-                agency={route?.params?.agency}
-                image={route?.params?.image}
-                url={route?.params?.wikipedia}
-                launches={route?.params?.launches}
-                status={route?.params?.status}
-                isDisabled={true}
-              />
+      <MemberCard
+        name={route?.params?.name}
+        onPress={() => {}}
+        agency={route?.params?.agency}
+        image={route?.params?.image}
+        url={route?.params?.wikipedia}
+        launches={route?.params?.launches}
+        status={route?.params?.status}
+        isDisabled={true}
+      />
     </SafeAreaView>
   );
 };

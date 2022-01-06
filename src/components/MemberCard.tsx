@@ -39,26 +39,26 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 5,
     padding: 10,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   img: {
     width: screenWidth / 5,
     height: screenWidth / 5,
-    borderRadius: screenWidth / 2.5,
+    borderRadius: screenWidth / 2.5
   },
   fieldCrew: {
     paddingHorizontal: 20,
-    paddingVertical: 2.5,
+    justifyContent:'center'
   },
   txt: {
     fontSize: 18,
-    fontWeight: '500',
+    fontWeight: '500'
   },
   url: {
     fontSize: 14,
     fontWeight: '400',
     flexWrap: 'wrap',
-    width: screenWidth / 1.5,
+    width: screenWidth / 1.5
   },
 });
 
